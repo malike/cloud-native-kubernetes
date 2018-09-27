@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cloudnative-java-service
+  labels:
+    app: cloudnative-java-service
+spec:
+  containers:
+    - image: stmalike/cloudnative-java-service
+      name: cloudnative-java-service
+      resources:
+        limits:
+          memory: "64Mi"
+          cpu: "1"
+        requests:
+          memory: "64Mi"
+          cpu: "0.5"
+      ports:
+        - containerPort: 8080
