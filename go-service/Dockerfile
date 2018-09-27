@@ -1,7 +1,1 @@
-package main
-
-
-
-func main() {
-    
-}
+FROM golang:1.9-alpine as builder
