@@ -1,0 +1,48 @@
+matrix:
+  include:
+    - language: generic
+      env:
+        global:
+        - secure: "FjTHilF78/lq0+HpqefWhSi1CE+KmUAWmZ/rpPlHHN0s2pNQLlFyEDOr8xTysau3Ldynrb+AWDHF9RaXDJG4sMaslFFScJ/w//fFtN8nPnlDRYNBbCq/hBhCzh/JMrgioyU1L2Y0LEK6zXTsBuIddnla9vfsQtM8CUB1y46FKIjcmqwwlmN2OVNgi1si/00ihsB7BVuxXij+WGaPDcCLKgvUwGQddlW7J7zTDQ5mvuBWKVshUDDI7opzF3OnbPUzsfFo3BoPDYR22NSGv1dRoQmMIWjb2h72YAA+MTmOhw0sLI5//YGKDQQBcfdpFnmcLKLSJ4rWscg6rJ75MOWWPbqO+77R07wwvWGxmhpjkP/SWGJi1UIiq6KWBUYfip1tR4cqkbGb9/PUWOVZbQhWw6xMCZV8n2UubFZxhrBhwOK+PnYPJV2jTdj9+L+eIwkPr5nM9fDHgcTYsN2mTIy1txuYr4leycuiM2ljq/UEJdwRUQwXefe2KBeyczz1gtL6iZKiP775uhSYkKoeyKxRETTEoD6EmhHW947upa9h7G5UDN3s6HXl4WIjOOH0hdDIqTzxS8PqTDtFkRxS8o9+NjD8I1aouSL75EyAdSYm437j1gh7g+ZXbf/90QUr0tSic/UthUJ8vCSooqe3kNMsDkoRfQtzgLqtvGrP/ZLGKzk="
+        - secure: "h7JsX4t8zkjQPYeoMjdWTqYyvXwmoFDYh9h1MCDhypBe7B43KqqJw+VrsZVgjbS2msBNd0Zt5ylueVvuaYtHODhBCCkhk8gqVTid4+tM24kspRC3L9HGGaGVumMAHpSqQB19fIDW6FWTSd+3Zc03vPtjuncpmHAiwY3a2uOU1FI1aJcmtfff62yu1Bz+Ckrsuh/o/osluO7QqLZpa1GNvKFizf6aRyDvu/Y7fM5Ro+tTceREMmfl+l8dxRvCbfPu221w7uTNDcoI16xUxLew4UmJdalrtFpVtd9GZzpRFP3ESGbwXd5rwRmMrgR/6YlfngR/d0nppxu00yfi1jgrsIon8Z2u87gUuu1+fiUqxveyQcOafzY1nY3tnVt6eRTWJFsR0cvLn0ddKhjDBxt59y3p6xN8Onk1Cb2is0b8XxA2kLmmQiUupZGR9gcNGRsdtchLH2/32jbrnaneTK25xZYSEje+2sKT5J4TrICmuQYvEm+vmpyakWv9DLEDRLR7wWQa5RsmLZ1mpCWur6LJPiaCPUhSFQfWbbM7VJ+ZcMu9dR2cStGpYZtFAVmo11f1B/lqlyF6srYsaPYiYXrJhXCzeQ/7oFZ72D6yP/8t36YOvGgq+5hQSA2YSn3LIQ+RTJtf2KLw1Wo5em+IlKMjAnMKCsyePZBfEaYpb0b4/Q8="
+        - SERVICE_DIR=frontend
+
+      before_install:
+        - chmod +x ./.travis/pushimage.sh
+
+      script: cd $SERVICE_DIR
+
+      after_success: 
+        - bash ../.travis/pushimage.sh frontend  
+
+    - language: java
+      jdk:
+        - oraclejdk8
+
+      env:
+        global:
+        - secure: "FjTHilF78/lq0+HpqefWhSi1CE+KmUAWmZ/rpPlHHN0s2pNQLlFyEDOr8xTysau3Ldynrb+AWDHF9RaXDJG4sMaslFFScJ/w//fFtN8nPnlDRYNBbCq/hBhCzh/JMrgioyU1L2Y0LEK6zXTsBuIddnla9vfsQtM8CUB1y46FKIjcmqwwlmN2OVNgi1si/00ihsB7BVuxXij+WGaPDcCLKgvUwGQddlW7J7zTDQ5mvuBWKVshUDDI7opzF3OnbPUzsfFo3BoPDYR22NSGv1dRoQmMIWjb2h72YAA+MTmOhw0sLI5//YGKDQQBcfdpFnmcLKLSJ4rWscg6rJ75MOWWPbqO+77R07wwvWGxmhpjkP/SWGJi1UIiq6KWBUYfip1tR4cqkbGb9/PUWOVZbQhWw6xMCZV8n2UubFZxhrBhwOK+PnYPJV2jTdj9+L+eIwkPr5nM9fDHgcTYsN2mTIy1txuYr4leycuiM2ljq/UEJdwRUQwXefe2KBeyczz1gtL6iZKiP775uhSYkKoeyKxRETTEoD6EmhHW947upa9h7G5UDN3s6HXl4WIjOOH0hdDIqTzxS8PqTDtFkRxS8o9+NjD8I1aouSL75EyAdSYm437j1gh7g+ZXbf/90QUr0tSic/UthUJ8vCSooqe3kNMsDkoRfQtzgLqtvGrP/ZLGKzk="
+        - secure: "h7JsX4t8zkjQPYeoMjdWTqYyvXwmoFDYh9h1MCDhypBe7B43KqqJw+VrsZVgjbS2msBNd0Zt5ylueVvuaYtHODhBCCkhk8gqVTid4+tM24kspRC3L9HGGaGVumMAHpSqQB19fIDW6FWTSd+3Zc03vPtjuncpmHAiwY3a2uOU1FI1aJcmtfff62yu1Bz+Ckrsuh/o/osluO7QqLZpa1GNvKFizf6aRyDvu/Y7fM5Ro+tTceREMmfl+l8dxRvCbfPu221w7uTNDcoI16xUxLew4UmJdalrtFpVtd9GZzpRFP3ESGbwXd5rwRmMrgR/6YlfngR/d0nppxu00yfi1jgrsIon8Z2u87gUuu1+fiUqxveyQcOafzY1nY3tnVt6eRTWJFsR0cvLn0ddKhjDBxt59y3p6xN8Onk1Cb2is0b8XxA2kLmmQiUupZGR9gcNGRsdtchLH2/32jbrnaneTK25xZYSEje+2sKT5J4TrICmuQYvEm+vmpyakWv9DLEDRLR7wWQa5RsmLZ1mpCWur6LJPiaCPUhSFQfWbbM7VJ+ZcMu9dR2cStGpYZtFAVmo11f1B/lqlyF6srYsaPYiYXrJhXCzeQ/7oFZ72D6yP/8t36YOvGgq+5hQSA2YSn3LIQ+RTJtf2KLw1Wo5em+IlKMjAnMKCsyePZBfEaYpb0b4/Q8="
+        - SERVICE_DIR=java-service        
+
+      before_install:
+        - chmod +x ./.travis/pushimage.sh
+
+      script: cd $SERVICE_DIR && mvn clean verify
+
+      after_success: 
+        - bash ../.travis/pushimage.sh java-service
+
+    - language: go
+      env:
+        global:
+        - secure: "FjTHilF78/lq0+HpqefWhSi1CE+KmUAWmZ/rpPlHHN0s2pNQLlFyEDOr8xTysau3Ldynrb+AWDHF9RaXDJG4sMaslFFScJ/w//fFtN8nPnlDRYNBbCq/hBhCzh/JMrgioyU1L2Y0LEK6zXTsBuIddnla9vfsQtM8CUB1y46FKIjcmqwwlmN2OVNgi1si/00ihsB7BVuxXij+WGaPDcCLKgvUwGQddlW7J7zTDQ5mvuBWKVshUDDI7opzF3OnbPUzsfFo3BoPDYR22NSGv1dRoQmMIWjb2h72YAA+MTmOhw0sLI5//YGKDQQBcfdpFnmcLKLSJ4rWscg6rJ75MOWWPbqO+77R07wwvWGxmhpjkP/SWGJi1UIiq6KWBUYfip1tR4cqkbGb9/PUWOVZbQhWw6xMCZV8n2UubFZxhrBhwOK+PnYPJV2jTdj9+L+eIwkPr5nM9fDHgcTYsN2mTIy1txuYr4leycuiM2ljq/UEJdwRUQwXefe2KBeyczz1gtL6iZKiP775uhSYkKoeyKxRETTEoD6EmhHW947upa9h7G5UDN3s6HXl4WIjOOH0hdDIqTzxS8PqTDtFkRxS8o9+NjD8I1aouSL75EyAdSYm437j1gh7g+ZXbf/90QUr0tSic/UthUJ8vCSooqe3kNMsDkoRfQtzgLqtvGrP/ZLGKzk="
+        - secure: "h7JsX4t8zkjQPYeoMjdWTqYyvXwmoFDYh9h1MCDhypBe7B43KqqJw+VrsZVgjbS2msBNd0Zt5ylueVvuaYtHODhBCCkhk8gqVTid4+tM24kspRC3L9HGGaGVumMAHpSqQB19fIDW6FWTSd+3Zc03vPtjuncpmHAiwY3a2uOU1FI1aJcmtfff62yu1Bz+Ckrsuh/o/osluO7QqLZpa1GNvKFizf6aRyDvu/Y7fM5Ro+tTceREMmfl+l8dxRvCbfPu221w7uTNDcoI16xUxLew4UmJdalrtFpVtd9GZzpRFP3ESGbwXd5rwRmMrgR/6YlfngR/d0nppxu00yfi1jgrsIon8Z2u87gUuu1+fiUqxveyQcOafzY1nY3tnVt6eRTWJFsR0cvLn0ddKhjDBxt59y3p6xN8Onk1Cb2is0b8XxA2kLmmQiUupZGR9gcNGRsdtchLH2/32jbrnaneTK25xZYSEje+2sKT5J4TrICmuQYvEm+vmpyakWv9DLEDRLR7wWQa5RsmLZ1mpCWur6LJPiaCPUhSFQfWbbM7VJ+ZcMu9dR2cStGpYZtFAVmo11f1B/lqlyF6srYsaPYiYXrJhXCzeQ/7oFZ72D6yP/8t36YOvGgq+5hQSA2YSn3LIQ+RTJtf2KLw1Wo5em+IlKMjAnMKCsyePZBfEaYpb0b4/Q8="
+        - SERVICE_DIR=go-service        
+
+      before_install:
+        - chmod +x ./.travis/pushimage.sh
+
+      after_success: 
+        - bash ./.travis/pushimage.sh go-service
+         
