@@ -6,13 +6,9 @@ RUN apk update && apk upgrade && \
 RUN chmod +x /usr/bin/dep
 
 WORKDIR $GOPATH/src/github.com/malike/cloud-native-kubernetes/go-service
-COPY Gopkg.toml Gopkg.lock ./
-COPY configuration.json ./
-RUN dep ensure --vendor-only
 COPY . ./
 RUN GOOS=linux go build -a -o /go-service .
 
 FROM scratch
 COPY --from=builder /go-service ./
-COPY --from=builder . ./
 ENTRYPOINT ["./go-service"]

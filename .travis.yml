@@ -1,3 +1,5 @@
+sudo: required
+
 matrix:
   include:
     - language: generic
@@ -16,6 +18,7 @@ matrix:
         - bash ../.travis/pushimage.sh frontend  
 
     - language: java
+      
       jdk:
         - oraclejdk8
 
