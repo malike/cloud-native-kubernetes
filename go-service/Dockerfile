@@ -7,7 +7,7 @@ RUN chmod +x /usr/bin/dep
 
 WORKDIR $GOPATH/src/github.com/malike/cloud-native-kubernetes/go-service
 COPY . ./
-RUN GOOS=linux go build -a -o /go-service .
+RUN go build -o /go-service .
 
 FROM scratch
 COPY --from=builder /go-service ./

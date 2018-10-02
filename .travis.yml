@@ -15,7 +15,7 @@ matrix:
       before_install:
         - chmod +x ./.travis/pushimage.sh
 
-      script: cd $FRONTEND && echo "path=>" `pwd` && cd $FRONTEND
+      script: cd $FRONTEND && echo "path=>" `pwd`
 
       after_success: 
         - bash ../.travis/pushimage.sh $FRONTEND  
