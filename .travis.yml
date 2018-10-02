@@ -44,8 +44,6 @@ matrix:
       before_install:
         - chmod +x ./.travis/pushimage.sh
 
-      script: cd $SERVICE_DIR
-
       after_success: 
         - bash ./.travis/pushimage.sh go-service
          
