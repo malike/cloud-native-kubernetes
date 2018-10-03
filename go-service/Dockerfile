@@ -6,7 +6,7 @@ RUN apk update && apk upgrade && \
 RUN chmod +x /usr/bin/dep
 
 WORKDIR $GOPATH/src/github.com/malike/cloud-native-kubernetes/go-service
-RUN go build -o $GOPATH/src/github.com/malike/cloud-native-kubernetes/go-service/go-service $GOPATH/src/github.com/malike/cloud-native-kubernetes/go-service/go-service/main.go
+RUN go build -o $GOPATH/src/github.com/malike/cloud-native-kubernetes/go-service/go-service $GOPATH/src/github.com/malike/cloud-native-kubernetes/go-service/main.go
 
 FROM scratch
 COPY --from=builder ./go-service ./
