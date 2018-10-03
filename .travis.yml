@@ -39,5 +39,5 @@ matrix:
       script: cd $GO_SERVICE && echo "path=>" `pwd`  
 
       after_success: 
-        - bash ./.travis/pushimage.sh $GO_SERVICE
+        - bash ../.travis/pushimage.sh $GO_SERVICE
          
