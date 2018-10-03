@@ -7,7 +7,7 @@ spec:
   minReadySeconds: 5
   strategy:
     type: RollingUpdate
-    rollingUpdate: 
+    rollingUpdate:
       maxUnavailable: 1
       maxSurge: 1
   template:
@@ -16,15 +16,15 @@ spec:
         app: cloudnative-java-service
     spec:
       containers:
-        - image: stmalike/cloudnative-java-service
-          imagePullPolicy: Always
-          name: cloudnative-java-service
-          resources:
-            limits:
-              memory: "64Mi"
-              cpu: "1"
-            requests:
-              memory: "64Mi"
-              cpu: "0.5"
-          ports:
-            - containerPort: 8080
+      - image: stmalike/cloudnative-java-service
+        imagePullPolicy: Always
+        name: cloudnative-java-service
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "1"
+          requests:
+            memory: "64Mi"
+            cpu: "0.5"
+        ports:
+        - containerPort: 8080

@@ -1,7 +1,7 @@
 
 #!/bin/bash
 SERVICE_DIR=$1
-echo "Uploading for image "+$SERVICE_DIR
+echo "Uploading for image "$SERVICE_DIR
 echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USER" --password-stdin
 # cd $SERVICE_DIR
 echo "Switching directory " `pwd` 

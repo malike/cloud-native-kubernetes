@@ -36,6 +36,8 @@ matrix:
       before_install:
         - chmod +x ./.travis/pushimage.sh
 
+      script: cd $GO_SERVICE && echo "path=>" `pwd`  
+
       after_success: 
         - bash ./.travis/pushimage.sh $GO_SERVICE
          
