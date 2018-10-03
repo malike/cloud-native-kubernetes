@@ -9,5 +9,5 @@ RUN go build -o ./goservice ./main.go
 
 
 FROM scratch
-COPY --from=builder ./goservice ./
+COPY --from=builder /goservice ./
 ENTRYPOINT ["./goservice"]
