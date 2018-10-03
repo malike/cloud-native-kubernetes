@@ -1,6 +1,6 @@
 FROM openjdk:8
 VOLUME /tmp
-ADD java-service/target/java-service-1.0-SNAPSHOT.jar java-service.jar
+ADD target/java-service-1.0-SNAPSHOT.jar java-service.jar
 RUN sh -c 'touch /java-service.jar'
 ENV JAVA_OPTS="-Xms64m -Xmx128m"
 EXPOSE 8080
