@@ -1,4 +1,5 @@
 sudo: required
+language: go
 
 env:
     global:
@@ -9,7 +10,17 @@ env:
       - GO_SERVICE=go-service
 
 matrix:
-  include:
+  include:    
+    - language: go
+      
+      before_install:
+        - chmod +x ./.travis/pushimage.sh
+
+      script: cd $GO_SERVICE && echo "path=>" `pwd`  
+
+      after_success: 
+        - bash ../.travis/pushimage.sh $GO_SERVICE
+         
     - language: generic
       
       before_install:
@@ -30,14 +41,4 @@ matrix:
 
       after_success: 
         - bash ../.travis/pushimage.sh $JAVA_SERVICE
-
-    - language: go
-      
-      before_install:
-        - chmod +x ./.travis/pushimage.sh
-
-      script: cd $GO_SERVICE && echo "path=>" `pwd`  
-
-      after_success: 
-        - bash ../.travis/pushimage.sh $GO_SERVICE
-         
+    
