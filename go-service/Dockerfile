@@ -5,7 +5,7 @@ RUN apk update && apk upgrade && \
     apk add --no-cache bash git openssh
 RUN chmod +x /usr/bin/dep
 
-WORKDIR $GOPATH/src/github.com/malike/cloud-native-kubernetes/go-service
+# WORKDIR $GOPATH/src/github.com/malike/cloud-native-kubernetes/go-service
 RUN go build -o $GOPATH/src/github.com/malike/cloud-native-kubernetes/go-service/go-service $GOPATH/src/github.com/malike/cloud-native-kubernetes/go-service/main.go
 
 FROM scratch
