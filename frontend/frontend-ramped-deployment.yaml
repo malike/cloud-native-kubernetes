@@ -16,7 +16,7 @@ spec:
         app: cloudnative-frontend
     spec:
       containers:
-        - image: stmalike/cloudnative-frontend
+        - image: stmalike/frontend
           imagePullPolicy: Always
           name: cloudnative-frontend
           resources:

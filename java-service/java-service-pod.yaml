@@ -6,7 +6,7 @@ metadata:
     app: cloudnative-java-service
 spec:
   containers:
-  - image: stmalike/cloudnative-java-service
+  - image: stmalike/java-service
     name: cloudnative-java-service
     resources:
       limits:

@@ -16,7 +16,7 @@ spec:
         app: cloudnative-go-service
     spec:
       containers:
-        - image: stmalike/cloudnative-go-service
+        - image: stmalike/go-service
           imagePullPolicy: Always
           name: cloudnative-go-service
           resources:

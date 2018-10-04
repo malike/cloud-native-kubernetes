@@ -16,7 +16,7 @@ spec:
         app: cloudnative-java-service
     spec:
       containers:
-      - image: stmalike/cloudnative-java-service
+      - image: stmalike/java-service
         imagePullPolicy: Always
         name: cloudnative-java-service
         resources:

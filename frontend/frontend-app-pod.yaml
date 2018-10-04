@@ -6,7 +6,7 @@ metadata:
     app: cloudnative-frontend
 spec:
   containers:
-    - image: stmalike/cloudnative-frontend
+    - image: stmalike/frontend
       name: cloudnative-frontend
       resources:
         limits:
