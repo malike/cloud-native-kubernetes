@@ -5,8 +5,9 @@ RUN chmod +x /usr/bin/dep
 
 WORKDIR ${TRAVIS_HOME}/gopath/src/github.com/malike/cloud-native-kubernetes/go-service
 COPY . ./
-RUN go build -o /goservice ./main.go
+RUN go build -o /go/bin/goservice ./main.go
 
-FROM scratch
-COPY --from=builder /goservice ./
+FROM alpine
+COPY --from=builder /go/bin/goservice ./
+EXPOSE 8079
 ENTRYPOINT ["./goservice"]
