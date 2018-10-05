@@ -28,3 +28,28 @@ spec:
             cpu: "0.5"
         ports:
         - containerPort: 8080
+        volumeMounts:
+          - name: cloudnative-config 
+            mountPath: "/config" 
+            readOnly: true
+      volumes:
+      - name: cloudnative-config
+        configMap:
+          name: cloudnative-config 
+          items:
+          - key: java-service.properties 
+            path: java-service.properties      
+        livenessProbe:
+           httpGet:
+             path: /health
+             port: http
+           initialDelaySeconds: 40
+           timeoutSeconds: 1
+           periodSeconds: 15
+        readinessProbe:
+           httpGet:
+             path: /health
+             port: http
+           initialDelaySeconds: 40
+           timeoutSeconds: 1
+           periodSeconds: 15        

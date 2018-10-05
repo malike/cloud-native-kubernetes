@@ -8,12 +8,5 @@ spec:
   containers:
   - image: stmalike/java-service
     name: cloudnative-java-service
-    resources:
-      limits:
-        memory: "64Mi"
-        cpu: "1"
-      requests:
-        memory: "64Mi"
-        cpu: "0.5"
     ports:
     - containerPort: 8080

@@ -19,5 +19,5 @@ func goServiceHandler(writer http.ResponseWriter, request *http.Request) {
 }
 
 func goServiceRouteHandler(writer http.ResponseWriter, request *http.Request) {
-	writer.Write([]byte("Go Service Test For Tracing "))
+	writer.Write([]byte("Go Service Test For Tracing"))
 }

@@ -20,8 +20,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class SampleMain {
 
-  @Value("${go.service.url}")
+  @Value("${go.service.url:http://localhost:8079}")
   private String GO_SERVICE_URL;
+
+  @Value("${instance.name:One}")
+  private String INSTANCE_NAME;
 
   /**
    * @param args the command line arguments
@@ -34,13 +37,13 @@ public class SampleMain {
   @RequestMapping(value = {"/javaservice"}, method = RequestMethod.GET)
   @ResponseBody
   public String javaService() {
-    return "{\"whoami\":\"Java Service\"}";
+    return "{\"whoami\":\""+INSTANCE_NAME+" Java Service\"}";
   }
 
   @RequestMapping(value = {"/javaserviceroute"}, method = RequestMethod.GET)
   @ResponseBody
   public String javaServiceRoute() {
-    return "{\"whoami\":\"Java Service\"}";
+    return "{\"whoami\":\""+INSTANCE_NAME+" Java Route Service\"}";
   }
 
 }
