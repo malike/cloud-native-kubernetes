@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: cloudnative-java-service
+  name: cloudnative-java-service-ramped
 spec:
   replicas: 2
   minReadySeconds: 5
@@ -16,20 +16,27 @@ spec:
         app: cloudnative-java-service
     spec:
       containers:
-      - image: stmalike/java-service
+      - image: stmalike/java-service:UPDATE2_0
         imagePullPolicy: Always
         name: cloudnative-java-service
-        resources:
-          limits:
-            memory: "64Mi"
-            cpu: "1"
-          requests:
-            memory: "64Mi"
-            cpu: "0.5"
         ports:
-        - containerPort: 8080
+         - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 40
+          timeoutSeconds: 1
+          periodSeconds: 15
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 40
+          timeoutSeconds: 1
+          periodSeconds: 15   
         volumeMounts:
-          - name: cloudnative-config 
+          - name: cloudnative-config
             mountPath: "/config" 
             readOnly: true
       volumes:
@@ -37,19 +44,5 @@ spec:
         configMap:
           name: cloudnative-config 
           items:
-          - key: java-service.properties 
-            path: java-service.properties      
-        livenessProbe:
-           httpGet:
-             path: /health
-             port: http
-           initialDelaySeconds: 40
-           timeoutSeconds: 1
-           periodSeconds: 15
-        readinessProbe:
-           httpGet:
-             path: /health
-             port: http
-           initialDelaySeconds: 40
-           timeoutSeconds: 1
-           periodSeconds: 15        
+          - key: application.properties
+            path: application.properties         

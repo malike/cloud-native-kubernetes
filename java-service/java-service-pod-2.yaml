@@ -19,5 +19,5 @@ spec:
     configMap:
       name: cloudnative-config 
       items:
-      - key: java-service.properties
-        path: java-service.properties
+      - key: application.properties
+        path: application.properties
