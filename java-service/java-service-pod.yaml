@@ -4,6 +4,7 @@ metadata:
   name: cloudnative-java-service
   labels:
     app: cloudnative-java-service
+    version: cloudnative-java-service
 spec:
   containers:
   - image: stmalike/java-service

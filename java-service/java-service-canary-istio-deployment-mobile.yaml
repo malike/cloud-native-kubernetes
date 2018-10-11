@@ -1,19 +1,19 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: cloudnative-java-service-canary
+  name: cloudnative-java-service-canary-mobile
   labels:
-    app: cloudnative-java-service   
+    app: cloudnative-java-service
 spec:
   replicas: 1
   template:
     metadata:
       labels:
         app: cloudnative-java-service
-        version: cloudnative-java-service
+        version: cloudnative-java-service-mobile
     spec:
       containers:
-      - image: stmalike/java-service
+      - image: stmalike/java-service:UPDATE2_0
         imagePullPolicy: IfNotPresent
         name: cloudnative-java-service
         ports:
@@ -28,17 +28,4 @@ spec:
           name: cloudnative-config 
           items:
           - key: application.properties
-            path: application.properties
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: cloudnative-java-service-canary
-spec:
-  type: LoadBalancer
-  ports:
-  - port: 9191
-    protocol: TCP
-    targetPort: 8080
-  selector:
-    app: cloudnative-java-service
+            path: application.properties         

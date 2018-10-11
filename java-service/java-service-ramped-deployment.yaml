@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - image: stmalike/java-service:UPDATE2_0
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         name: cloudnative-java-service
         ports:
          - containerPort: 8080
