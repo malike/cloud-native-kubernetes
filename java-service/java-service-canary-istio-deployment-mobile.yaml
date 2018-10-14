@@ -10,12 +10,12 @@ spec:
     metadata:
       labels:
         app: cloudnative-java-service
-        version: cloudnative-java-service-mobile
+        version: cloudnative-java-service-canary-mobile
     spec:
       containers:
       - image: stmalike/java-service:UPDATE2_0
         imagePullPolicy: IfNotPresent
-        name: cloudnative-java-service
+        name: cloudnative-java-service-canary-mobile
         ports:
          - containerPort: 8080
         volumeMounts:
@@ -28,4 +28,4 @@ spec:
           name: cloudnative-config 
           items:
           - key: application.properties
-            path: application.properties         
+            path: application.properties

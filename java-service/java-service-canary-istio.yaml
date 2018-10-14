@@ -1,13 +1,13 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: java-service-istio-lb
+  name: java-service-istio-gateway
 spec:
   selector:
     istio: ingressgateway
   servers:
   - port:
-      number: 9191
+      number: 80
       name: http
       protocol: HTTP    
     hosts:
@@ -16,13 +16,19 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: java-service-istio-vs
+  name: cloudnative-java-service-canary
 spec:
   hosts:
   - "*"
   gateways:
-  - java-service-istio-lb
+  - java-service-istio-gateway
   http:
+  - route:
+    - destination:
+        host: cloudnative-java-service-canary
+        subset: cloudnative-java-service-canary
+        port:
+          number: 9191
   - match:
     - headers:
         channel:
@@ -30,23 +36,22 @@ spec:
     route:
     - destination:
         host: cloudnative-java-service-canary
-        subset: mobile-route
-  - route:
-    - destination:
-        host: cloudnative-java-service-canary
-        subset: web-route
+        subset: cloudnative-java-service-canary-mobile
+        port:
+          number: 9191
+        
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
-  name: java-service-istio-rule
+  name: cloudnative-java-service-canary
 spec:
   host: "*"
   subsets:
-  - name: mobile-route
+  - name: cloudnative-java-service-canary-mobile
     labels:
-      version: cloudnative-java-service-mobile
-  - name: web-route
+      version: cloudnative-java-service-canary-mobile
+  - name: cloudnative-java-service-canary
     labels:
-      version: cloudnative-java-service      
+      version: cloudnative-java-service-canary
           
