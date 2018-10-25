@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cloudnative-go-service
+  labels:
+    app: cloudnative-go-service
+spec:
+  containers:
+    - name: cloudnative-go-service
+      image: stmalike/go-service
+      resources:
+        limits:
+          memory: "64Mi"
+          cpu: "1"
+        requests:
+          memory: "64Mi"
+          cpu: "0.5"
+      ports:
+        - containerPort: 8079
