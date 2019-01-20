@@ -1,37 +1,29 @@
 Description: >
+    CI/CD CloudFormation pipeline. 
 
-    This CI/CD CloudFormation template.
-
-Parameters:
-    
+Parameters:    
     ApplicationName: 
         Description: This will be used to name the pipeline and build resources
         Type: String
-        AllowedPattern: '[A-Za-z0-9-]+'
-    
+        AllowedPattern: '[A-Za-z0-9-]+'    
     ArtifactS3Bucket:
         Description: An existing S3 bucket within this AWS account
         Type: String
-
     GitHubOAuthToken: 
         Description: Create a token with 'repo' and 'admin:repo_hook' permissions here https://github.com/settings/tokens
         Type: String
-
     GitHubUser:
         Description: Enter GitHub username of the repository owner
         Type: String
-
     GitHubRepository:
         Description: Enter the repository name that should be monitored for changes
         Type: String
-
     GitHubBranch:
         Description: Enter the GitHub branch to monitored
         Type: String
         Default: master
 
 Metadata:
-
     AWS::CloudFormation::Interface:
         ParameterGroups:
             - 
@@ -47,8 +39,7 @@ Metadata:
                     - GitHubOAuthToken
                     - GitHubUser
                     - GitHubRepository
-                    - GitHubBranch
-            
+                    - GitHubBranch            
         ParameterLabels:
             ApplicationName: 
                 default: Application Name
@@ -62,7 +53,6 @@ Metadata:
                 default: Repository Branch
             GitHubOAuthToken: 
                 default: OAuth2 Token
-
 Resources:
 
     CodePipeline:
@@ -125,8 +115,8 @@ Resources:
                                 RoleArn: !Sub ${CodePipelineCloudFormationRole.Arn}
                                 Capabilities: CAPABILITY_NAMED_IAM
                                 StackName: !Sub ${ApplicationName}-staging
-                                TemplatePath: Built::cloudformation/infrastructure.yml
-                                TemplateConfiguration: Built::config/staging.conf
+                                TemplatePath: 'Built::cloudformation/deployment-infrastructure.yml'
+                                TemplateConfiguration: 'Built::configuration-parameters/deploy-staging.conf'
                                 ParameterOverrides: !Sub |
                                     {
                                         "ApplicationName": "${ApplicationName}",
@@ -175,8 +165,8 @@ Resources:
                                 RoleArn: !Sub ${CodePipelineCloudFormationRole.Arn}
                                 Capabilities: CAPABILITY_NAMED_IAM
                                 StackName: !Sub ${ApplicationName}-production
-                                TemplatePath: Built::cloudformation/infrastructure.yml
-                                TemplateConfiguration: Built::config/production.conf
+                                TemplatePath: 'Built::cloudformation/deployment-infrastructure.yml'
+                                TemplateConfiguration: 'Built::configuration-parameters/deploy-production-europe.conf'
                                 ParameterOverrides: !Sub |
                                     {
                                         "ApplicationName": "${ApplicationName}",
@@ -197,7 +187,6 @@ Resources:
                                 ApplicationName: !Ref ApplicationName
                                 DeploymentGroupName: production
                         
-
     CodeBuild:
         Type: AWS::CodeBuild::Project
         Properties:
