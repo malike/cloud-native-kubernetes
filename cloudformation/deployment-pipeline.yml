@@ -52,9 +52,9 @@ Metadata:
             GitHubBranch: 
                 default: Repository Branch
             GitHubOAuthToken: 
-                default: OAuth2 Token
-Resources:
+								default: OAuth2 Token
 
+Resources:
 		HtmlRepository:
 			Type: "AWS::ECR::Repository"
 			Properties: 
@@ -290,8 +290,6 @@ Resources:
             Artifacts:
                 Name: !Ref ApplicationName
                 Type: CODEPIPELINE
-
-
 
     CodePipelineRole:
         Type: AWS::IAM::Role
